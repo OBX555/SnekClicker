@@ -16,7 +16,7 @@ let rank = 1;
 
 
 function getMoney() {
-    return getLevelOf("upgrademultiplier") * (getLevelOf("upgradeclick1") + getLevelOf("upgradeclick2")) * level * Math.pow(rank, 2);
+    return (getLevelOf("upgrademultiplier") * Math.pow(getLevelOf("moneyexponentmultiplier"),2)) * (getLevelOf("upgradeclick1") + getLevelOf("upgradeclick2")) * level * Math.pow(rank, 2);
 }
 
 function refresh() {
@@ -53,7 +53,13 @@ function checkStuff() {
 }
 
 function formatNumber(num) {
-    return num.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    const units = ["", "K", "M", "B", "T", "Q", "Qd", "Sx", "Sp", "Oc", "No", "Dc"];
+    let unit = 0;
+    while (num >= 1000 && unit < units.length - 1) {
+        num /= 1000;
+        unit++;
+    }
+    return `${num.toFixed(1)}${units[unit]}`;
 }
 
 click.addEventListener("click", () => {

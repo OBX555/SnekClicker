@@ -19,6 +19,13 @@ const upgrades = [
         multiplier: 1.5,
         exponent: 1,
         cost: 20
+    },
+    {
+        name: "Money Exponent Multiplier",
+        id: "moneyexponentmultiplier",
+        multiplier: 15,
+        exponent: 1.1,
+        cost: 100000
     }
 ];
 
