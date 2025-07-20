@@ -1,0 +1,16 @@
+#click{
+    position: absolute;
+    top: 50%;
+    left: 50%;  
+    background-color: chartreuse;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+     cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+#click:hover {
+    background-color: limegreen;
+}
