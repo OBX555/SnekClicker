@@ -27,5 +27,8 @@ function rankCalc(find){
     for (let i = 0; i < plus; i++){
         _ += "+";
     }
+    if (rank >= rmap.length) {
+        return "???" + _ + " (Max Rank+ reached)";
+    }
     return rmap[rank] + _;
 }

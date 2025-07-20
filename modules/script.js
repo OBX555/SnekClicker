@@ -4,6 +4,7 @@ const levele = document.getElementById("Level");
 const xpe = document.getElementById("xp");
 const xpRequirede = document.getElementById("xpRequired");
 const xpContainer = document.getElementById("xpContainer");
+const rankContainer = document.getElementById("rankContainer");
 const ranke = document.getElementById("rank");
 const upgradesContainer = document.getElementById("upgradesContainer");
 
@@ -14,9 +15,8 @@ let level = 1;
 let rank = 1;
 
 
-
 function getMoney() {
-    return getLevelOf("upgrademultiplier") * getLevelOf("upgradeclick") * level;
+    return getLevelOf("upgrademultiplier") * (getLevelOf("upgradeclick1") + getLevelOf("upgradeclick2")) * level * Math.pow(rank, 2);
 }
 
 function refresh() {
@@ -25,16 +25,19 @@ function refresh() {
     xpe.innerHTML = formatNumber(xp);
     xpRequirede.innerHTML = formatNumber(xpRequired);
     ranke.innerHTML = rankCalc(rank);
-    bar.setValue(Math.floor((xp / xpRequired) * 100));
+    barLevel.setValue(Math.min(Math.floor((xp / xpRequired) * 100), 100));
+    barRank.setValue(Math.min(Math.floor((level / (25 * rank)) * 100), 100));
     upgradesContainer.innerHTML = "";
     upgrades.forEach(upgrade => render(upgradesContainer, upgrade.id));
 }
 
 function checkStuff() {
     if (xp >= xpRequired) {
-        level++;
-        xp -= xpRequired;
-        xpRequired *= 1.1; // Increase XP required for next level by 70%
+        while (xp >= xpRequired) {
+            level++;
+            xp -= xpRequired;
+            xpRequired *= 1.1; // Increase XP required for next level by 70%
+        }
         refresh();
     }
     if (level > 25 * rank) {
@@ -42,6 +45,9 @@ function checkStuff() {
         level = 1;
         xp = 0;
         xpRequired = 100;
+        // Reset upgrades
+        upgradeLevels = {};
+        money = 0; // Reset money
         refresh();
     }
 }
@@ -57,9 +63,10 @@ click.addEventListener("click", () => {
 });
 
 // Setup
-let bar = new SimpleLoadableBar(xpContainer, "100px", "10px", "5px", "gray", "green");
+let barLevel = new SimpleLoadableBar(xpContainer, "95%", "10px", "5px", "gray", "green");
+let barRank = new SimpleLoadableBar(rankContainer, "95%", "10px", "5px", "gray", "green");
 
-setInterval(checkStuff, 10);
+
+setInterval(checkStuff, 500);
 refresh();
-
 

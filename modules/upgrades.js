@@ -7,12 +7,19 @@ const upgrades = [
         cost: 100
     },
     {
-        name: "Money Per Click",
-        id: "upgradeclick",
+        name: "Money Per Click 1",
+        id: "upgradeclick1",
         multiplier: 1.5,
         exponent: 1,
         cost: 10
     },
+    {
+        name: "Money Per Click 2",
+        id: "upgradeclick2",
+        multiplier: 1.5,
+        exponent: 1,
+        cost: 20
+    }
 ];
 
 let upgradeLevels = {};

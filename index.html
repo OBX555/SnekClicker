@@ -6,24 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnekClicker</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
+    <canvas id="snake-canvas" width="400" height="400"></canvas>
+
     <div id="gameContainer">
-        <button id="click">Click</button>
-        <div id="upgradesContainer"></div>
-        <p>Money: <span id="money">0</span></p>
-        <p>rank: <span id="rank">"H----"</span></p>
-        <div id="xpContainer">
-            <p>Level: <span id="Level">0</span></p>
-            <p>Xp: <span id="xp">0</span>/<span id="xpRequired">100</span></p>
+        <div>
+            <div id="upgradesContainer"></div>
+            <div>
+                <p>Money: <span id="money">0</span></p>
+                <div id="rankContainer">
+                    <p>rank: <span id="rank">"H----"</span></p>
+                </div>
+                <div id="xpContainer">
+                    <p>Level: <span id="Level">0</span></p>
+                    <p>Xp: <span id="xp">0</span>/<span id="xpRequired">100</span></p>
+                </div>
+            </div>
         </div>
+        <button id="click">Click</button>
     </div>
+
     <script src="https://tyuxx.github.io/tyuLIB/versions/4/lib/ddcUI/uiElements/simpleElements.js"></script>
-    <script src="rank.js"></script>
-    <script src="upgrades.js"></script>
-    <script src="script.js" defer></script>
+    <script src="modules/rank.js"></script>
+    <script src="modules/upgrades.js"></script>
+    <script src="modules/script.js" defer></script>
+    <script src="modules/snake.js" defer></script>
 </body>
 
 </html>
